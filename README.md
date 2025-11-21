@@ -1,8 +1,14 @@
 ![Alt text](image.png)![Alt text](image-1.png)![Alt text](image-2.png)![Alt text](image-3.png)
 
 
+```
+npm install jsonwebtoken
+npm install bcryptjs
+npm i bcrypt
+ npm i mysql2
+ node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 
-
+```
 
 ```
 
