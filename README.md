@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Alt text](image.png)![Alt text](image-1.png)![Alt text](image-2.png)![Alt text](image-3.png)
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-- Create database (agar pehle se nahi hai)
+CREATE DATABASE IF NOT EXISTS myauth;
+USE myauth;
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+-- Create users table
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100),
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+ALTER TABLE users 
+ADD COLUMN active_token TEXT NULL;
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+-- Insert sample users
+INSERT INTO users (first_name, last_name, email, password)
+VALUES 
+('Aftab', 'Ahmed', 'aftab@example.com', '123456'),
+('Ali', 'Khan', 'ali@example.com', 'password123'),
+('Sara', 'Bano', 'sara@example.com', 'mypassword'),
+('John', 'Doe', 'john@example.com', 'secret'),
+('Jane', 'Smith', 'jane@example.com', 'pass1234', NULL);
 
-## Deploy on Vercel
+ALTER TABLE users ADD COLUMN blocked TINYINT(1) DEFAULT 0;
+ALTER TABLE users ADD COLUMN role VARCHAR(20) DEFAULT 'user';
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+SELECT * FROM users;
+
+-- update users set  role ="admin" where id =,
+UPDATE users SET role = 'user', blocked =0, active_token=null WHERE id = 7;
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
